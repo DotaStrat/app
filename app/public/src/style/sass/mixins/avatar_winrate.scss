@@ -1,0 +1,93 @@
+@mixin avatar-winrate ( 
+	$name, 
+	$pie_size, 
+	$unit, 
+	$avatar_border_color, 
+	$win_color, 
+	$lose_color 
+) {
+
+	$half_of_pie: $pie_size/2;
+	$image_size: $half_of_pie + ($unit*4.5);
+	$how_much_adjustment_to_center: $half_of_pie - ($image_size/2);
+
+	.#{$name}_wrap {
+		width : $pie_size;
+		height : $pie_size;
+	}
+
+	.#{$name}_image {
+		
+		position: absolute;
+		z-index : 1;
+		width:  $image_size;
+		height: $image_size;
+		left: $how_much_adjustment_to_center;
+		margin-top: $how_much_adjustment_to_center;
+		border-radius : $image_size;
+		border : $unit solid $avatar_border_color;
+		overflow: hidden;
+	}
+
+	.#{$name}_image_source { 
+		height: 100%;
+	}
+
+	.#{$name}_pie {
+		position:absolute;
+		width:$half_of_pie;
+		height:$half_of_pie*2;
+		overflow:hidden;
+		left:$half_of_pie;
+
+		@include transform-origin( left, center );
+
+		&:before { 
+			content:"";
+			position:absolute;
+			width:$half_of_pie;
+			height:$half_of_pie*2;
+			left:-$half_of_pie;
+			border-radius:$half_of_pie 0 0 $half_of_pie;
+			background-color: $win_color;
+			@include transform-origin( right, center );
+		}
+
+		&:after { 
+			background-color: $win_color;
+		}
+	}
+
+	.#{$name}_pie.#{$name}_big_pie {
+		width:$half_of_pie*2;
+		height:$half_of_pie*2;
+		left: 0px;
+		@include transform-origin( center, center );
+
+		&:before { 
+			left:0px;
+			background-color:$lose_color
+		}
+
+		&:after { 
+			content:"";
+			position:absolute;
+			width:$half_of_pie;
+			height:$half_of_pie*2;
+			left:$half_of_pie;
+			border-radius:0 $half_of_pie $half_of_pie 0;
+			background-color:$lose_color
+		}
+	}
+
+	
+	// @for $i from 1 through 360 {
+	// 	.#{$name}_pie[data-start="#{$i}"] {
+	// 		@include rotate( #{$i}deg );
+	// 	}
+
+	// 	.#{$name}_pie[data-value="#{$i}"]:BEFORE {
+	// 		@include rotate( #{$i+1}deg );
+	// 	}
+	// }
+}

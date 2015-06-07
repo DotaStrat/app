@@ -1,0 +1,62 @@
+<div class="menu">
+
+	<div class="menu_profile">
+		<div class="menu_profile_winrate">
+			<div class="menu_profile_winrate_inner">
+
+				<div class="menu_profile_winrate_wrap">
+					<div class="menu_profile_winrate_image">
+						<img 
+							class="menu_profile_winrate_image_source"
+							src="{{ menu.profile.avatar }}"
+						>
+					</div>
+					<div 
+						class="menu_profile_winrate_pie" 
+						data-start="0" 
+						data-value="{{ menu.profile.winrate.pie.rotate_small }}"
+					></div>
+					<div 
+						class="menu_profile_winrate_pie menu_profile_winrate_big_pie"
+						data-start="{{ menu.profile.winrate.pie.rotate_small }}"
+						data-value="{{ menu.profile.winrate.pie.rotate_big }}"
+					></div>
+				</div>
+
+			</div>
+		</div>
+		<div class="menu_profile_name">
+			{{ menu.profile.username }}
+		</div>
+		<div class="menu_profile_control">
+			<div class="icon_menu_profile_control_button"></div>
+		</div>
+	</div>
+
+	<div class="menu_controls">
+		<a 
+			ng-repeat="button in menu.buttons"
+			ng-class="{ 
+				'menu_controls_button': ( menu.activeButton !== button.name ),
+				'menu_controls_button_active': ( menu.activeButton === button.name )
+			}"
+			ui-sref="use.{{ button.name }}"
+			ng-click="menu.activeButton = button.name"
+		>
+			<div class="icon_menu_controls_button_{{ button.name }}"></div>
+			<div class="menu_controls_button_name">
+				{{ button.name }}
+			</div>
+			<div class="menu_controls_button_notification" ng-if="button.notifications > 0">
+				<div class="menu_controls_button_notification_number">
+					{{ button.notifications }}
+				</div>
+			</div>
+		</a>
+	</div>
+
+</div>
+
+<div class="container">
+	<div ui-view></div>
+</div>

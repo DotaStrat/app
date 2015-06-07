@@ -1,0 +1,21 @@
+{
+  "name": "dotastrat",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "cikica",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.12.4",
+    "gulp": "~3.9.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-uglifyjs": "~0.6.2",
+    "gulp-concat": "~2.5.2"
+  }
+}
