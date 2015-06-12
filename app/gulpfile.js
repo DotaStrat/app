@@ -1,7 +1,9 @@
-var path, gulpModulesPath;
+var path, gulpModulesPath, configuration;
+
 path = require("path");
+configuration = require(__dirname+"/gulp.configuration.js")();
 gulpModulesPath = path.join(__dirname, 'gulp');
 
-require(gulpModulesPath+"/vendor.compile.js.js")();
-require(gulpModulesPath+"/source.compile.templates.js")();
-require(gulpModulesPath+"/source.compile.js.js")();
+configuration.tasks.forEach(function (taskName) {
+	require(gulpModulesPath+"/"+taskName)(configuration);
+});

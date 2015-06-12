@@ -3,21 +3,14 @@ var gulp, angularTemplateCache;
 gulp = require("gulp");
 angularTemplateCache = require("gulp-angular-templatecache");
 
-module.exports = function () {
-
-	var templateSource, distributionFileName, distributionFolderPath;
-
-	templateSource = "public/src/**/*.html";
-	distributionFileName = "templates.js";
-	distributionFolderPath = "dist";
-	
+module.exports = function (given) {
 
 	gulp.task("source:compile:templates", function () {
-		gulp.src(templateSource)
-		.pipe(angularTemplateCache(distributionFileName, {
+		gulp.src(given.compile.source.templates.source)
+		.pipe(angularTemplateCache(given.compile.source.templates.distributionFileName, {
 			standalone: true,
-			module: "dotaStratTemplates"
+			module: "templates"
 		}))
-		.pipe(gulp.dest(distributionFolderPath));
+		.pipe(gulp.dest(given.compile.distributionFolderPath));
 	});
 };

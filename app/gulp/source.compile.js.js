@@ -4,18 +4,12 @@ gulp = require("gulp");
 uglifyjs = require("gulp-uglifyjs");
 concat = require("gulp-concat");
 
-module.exports = function () {
-
-	var distributionFolderPath, distributionFileName, sourceMap;
-
-	distributionFolderPath = "dist";
-	distributionFileName = "source.js";
-	sourceMap = "public/src/**/*.js";
-
+module.exports = function (given) {
+	
 	gulp.task("source:compile:js", function () {
-		gulp.src(sourceMap)
-		.pipe(concat(distributionFileName))
+		gulp.src(given.compile.source.js.source)
+		.pipe(concat(given.compile.source.js.distributionFileName))
 		.pipe(uglifyjs())
-		.pipe(gulp.dest(distributionFolderPath));
+		.pipe(gulp.dest(given.compile.distributionFolderPath));
 	});
 };
