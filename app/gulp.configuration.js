@@ -11,7 +11,7 @@ module.exports = function () {
 			distributionFolderPath: "dist",
 			vendor: {
 				js: {
-					distributionFileName: "vendor.js"
+					distributionFileName: "vendor.js",
 					source: [
 						"public/bower_components/angular/angular.js",
 						"public/bower_components/angular-ui-router/release/angular-ui-router.js"
@@ -20,7 +20,7 @@ module.exports = function () {
 			},
 			source: {
 				js: {
-					distributionFileName: "source.js"
+					distributionFileName: "source.js",
 					source: "public/src/**/*.js",
 				},
 				css: {
@@ -28,7 +28,7 @@ module.exports = function () {
 					source: "public/style/**/*.scss",
 				},
 				templates: {
-					distributionFileName: "templates.js"
+					distributionFileName: "templates.js",
 					source: "public/src/**/*.html",
 				}
 			},
